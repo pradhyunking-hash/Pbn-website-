@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Palm Beach Network (PBN)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d0b1a;
+  --card: rgba(255,255,255,0.05);
+  --stroke: rgba(255,255,255,0.12);
+  --text:#eaf0ff;
+  --muted: rgba(234,240,255,0.7);
+  --blue:#2f6bff;
+  --purple:#8a00ff;
+  --gold:#ffcc66;
+}
+*{box-sizing:border-box;}
+html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;overflow-x:hidden;}
+body{
+  background: linear-gradient(120deg, #2f6bff 0%, #8a00ff 100%);
+  background-size: 400% 400%;
+  animation: gradientMove 30s ease infinite;
+  color: var(--text);
+}
+@keyframes gradientMove{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+#particles{position:fixed;inset:0;z-index:-2;}
+.glow{
+  position:fixed;inset:-20%;z-index:-1;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(47,107,255,0.2), transparent 50%),
+    radial-gradient(circle at 70% 20%, rgba(138,0,255,0.15), transparent 55%),
+    radial-gradient(circle at 50% 80%, rgba(255,204,102,0.1), transparent 60%);
+  filter: blur(30px);
+  animation: floatGlow 15s ease-in-out infinite;
+  pointer-events:none;
+}
+@keyframes floatGlow{0%,100%{transform:translateY(0px);}50%{transform:translateY(25px);}}
+
+.wrap{width:min(1200px,92%);margin:0 auto;padding:26px 0 80px;}
+
+header{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 0;}
+.brand{display:flex;align-items:center;gap:12px;}
+.logo{width:50px;height:50px;border-radius:14px;background:url('EED8AF2D-0797-4FB0-B6BF-143AB62EF9C9.png') center/cover no-repeat;border:1px solid rgba(255,255,255,0.15);box-shadow: 0 0 30px rgba(47,107,255,0.4);}
+.brand h1{margin:0;font-family:Orbitron,Inter;font-size:18px;letter-spacing:0.8px;}
+.brand p{margin:0;font-size:12px;color:var(--muted);}
+
+nav{display:flex;gap:12px;flex-wrap:wrap;}
+.navbtn{padding:10px 12px;border-radius:14px;border:1px solid rgba(255,255,255,0.12);background: rgba(255,255,255,0.05);color:var(--text);text-decoration:none;font-weight:600;font-size:13px;transition:0.2s ease;}
+.navbtn:hover{transform:translateY(-2px);border-color: var(--purple);box-shadow:0 10px 30px rgba(138,0,255,0.1);}
+
+.hero{margin-top:16px;padding:40px 30px;border-radius:26px;background: rgba(0,0,0,0.1);backdrop-filter: blur(12px);border:1px solid rgba(255,255,255,0.1);box-shadow:0 20px 60px rgba(0,0,0,0.25);position:relative;overflow:hidden;}
+.hero::before{content:"";position:absolute;inset:-80px;background: radial-gradient(circle at 20% 30%, rgba(47,107,255,0.25), transparent 55%),radial-gradient(circle at 80% 40%, rgba(138,0,255,0.15), transparent 55%);filter: blur(20px);opacity:0.8;z-index:0;}
+.heroContent{position:relative;z-index:1;display:grid;grid-template-columns:1.3fr 0.7fr;gap:30px;align-items:center;}
+@media (max-width: 900px){.heroContent{grid-template-columns:1fr;}}
+.title{font-family:Orbitron,Inter;font-size:clamp(32px,5vw,48px);margin:0 0 12px;letter-spacing:1px;}
+.subtitle{margin:0 0 20px;color:var(--muted);font-size:16px;line-height:1.6;}
+.ctaRow{display:flex;gap:12px;flex-wrap:wrap;}
+.btn{padding:12px 16px;border-radius:16px;border:1px solid rgba(255,255,255,0.12);background: rgba(255,255,255,0.05);color:var(--text);text-decoration:none;font-weight:700;font-size:14px;transition:0.2s ease;display:inline-flex;align-items:center;gap:8px;}
+.btnPrimary{background: linear-gradient(135deg, var(--blue), var(--purple));border-color: rgba(138,0,255,0.35);box-shadow:0 15px 45px rgba(47,107,255,0.25);}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 35px rgba(0,0,0,0.25);}
+
+.miniCard{border-radius:22px;background: rgba(0,0,0,0.12);border:1px solid rgba(255,255,255,0.1);padding:18px;}
+.miniCard h3{margin:0 0 6px;font-size:15px;letter-spacing:0.4px;}
+.miniCard p{margin:0;color:var(--muted);font-size:13px;line-height:1.55;}
+.pill{padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);background: rgba(255,255,255,0.05);color:rgba(234,240,255,0.85);font-weight:700;display:inline-block;margin-top:6px;}
+
+.section{margin-top:32px;background: rgba(0,0,0,0.08);border-radius:22px;padding:20px;backdrop-filter:blur(10px);}
+.sectionTitle{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:16px;}
+.sectionTitle h2{margin:0;font-size:16px;font-family:Orbitron,Inter;}
+.grid{display:grid;grid-template-columns: repeat(3,1fr);gap:16px;}
+@media (max-width:900px){.grid{grid-template-columns:1fr;}}
+.card{padding:16px;border-radius:22px;background: rgba(0,0,0,0.1);border:1px solid rgba(255,255,255,0.1);transition:0.2s ease;}
+.card:hover{transform:translateY(-3px);border-color: rgba(138,0,255,0.35);box-shadow:0 20px 60px rgba(0,0,0,0.2);}
+.tag{display:inline-block;font-size:11px;font-weight:800;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);background: rgba(255,255,255,0.05);color:rgba(234,240,255,0.92);margin-bottom:10px;}
+.card h4{margin:0 0 6px;font-size:15px;}
+.card p{margin:0;color:var(--muted);font-size:13px;line-height:1.55;}
+
+footer{margin-top:34px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.12);color:var(--muted);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+</style>
+</head>
+
+<body>
+<canvas id="particles"></canvas>
+<div class="glow"></div>
+
+<div class="wrap">
+<header>
+  <div class="brand">
+    <div class="logo"></div>
+    <div>
+      <h1>Palm Beach Network</h1>
+      <p>PBN • Roblox ER:LC Roleplay</p>
+    </div>
+  </div>
+  <nav>
+    <a class="navbtn" href="#departments">Departments</a>
+    <a class="navbtn" href="#rules">Rules</a>
+    <a class="navbtn" href="#shop">Shop</a>
+    <a class="navbtn" href="#join">Join</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="heroContent">
+    <div>
+      <h2 class="title">Welcome to Palm Beach Network</h2>
+      <p class="subtitle">
+        Clean, cinematic, and immersive ER:LC roleplay experience. Join departments, attend sessions, and create unforgettable moments.
+      </p>
+      <div class="ctaRow" id="join">
+        <a class="btn btnPrimary" href="https://www.roblox.com/games/2830504785" target="_blank">🎮 Join Game</a>
+        <a class="btn" href="https://discord.gg/eYe6Q66bG" target="_blank">🔥 Join Discord</a>
+      </div>
+    </div>
+    <div class="miniCard">
+      <h3>Server Status</h3>
+      <p>✅ Sessions Daily<br>👥 Active Staff Team<br>🌴 Palm Beach City RP</p>
+      <span class="pill">PBN • Official Network</span>
+    </div>
+  </div>
+</section>
+
+<!-- Add Departments, Shop, Rules like before -->
+
+<footer>
+  <div>© <span id="year"></span> Palm Beach Network • All Rights Reserved</div>
+  <div class="pill">Made with ❤️ for PBN</div>
+</footer>
+</div>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// Particles
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+let w,h;
+function resize(){w=canvas.width=window.innerWidth;h=canvas.height=window.innerHeight;}
+window.addEventListener("resize",resize);
+resize();
+
+const particles=[];
+const count=120;
+function rand(min,max){return Math.random()*(max-min)+min;}
+for(let i=0;i<count;i++){particles.push({x:rand(0,w),y:rand(0,h),r:rand(1.5,3),vx:rand(-0.5,0.5),vy:rand(-0.3,0.3),a:rand(0.2,0.6)});}
+function draw(){
+  ctx.clearRect(0,0,w,h);
+  for(const p of particles){
+    p.x+=p.vx;p.y+=p.vy;
+    if(p.x<0)p.x=w;if(p.x>w)p.x=0;
+    if(p.y<0)p.y=h;if(p.y>h)p.y=0;
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(160,200,255,${p.a})`;
+    ctx.fill();
+  }
+  for(let i=0;i<particles.length;i++){
+    for(let j=i+1;j<particles.length;j++){
+      const a=particles[i];const b=particles[j];
+      const dx=a.x-b.x;const dy=a.y-b.y;const dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist<120){ctx.strokeStyle=`rgba(138,0,255,0.08)`;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();}
+    }
+  }
+  requestAnimationFrame(draw);
+}
+draw();
+</script>
+</body>
+</html>
